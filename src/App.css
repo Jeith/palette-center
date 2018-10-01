@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+}
+
+.titleText{
+  color: #3F51B5;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.homeContainer{
+  margin: 0 10% 0 10%;
+}
+
+.randomSchemeContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-top: 65px;
+}
+
+.randomScemeCard{
+  width: 236px;
+  height: 140px;
+}
+
+.randomColorSceme{
+  height: 88px;
+  width: 236px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
