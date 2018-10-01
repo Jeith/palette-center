@@ -24,15 +24,16 @@ class Color extends React.Component {
         fetch('http://www.thecolorapi.com/scheme?hex=' + color + '&mode=monochrome&count=5')
         .then((response => response.json()))
         .then(response => {
+            //console.log("colors: " + response.colors[0].hex.value)
             
             let tempState = this.state.newArr;
 
-            tempState.push(response);
+            tempState.push(response.colors);
             this.setState({newArr: tempState},
                 function(){
                     // console.log("array in state: " + this.state.newArr);
                 });
-                console.log(response)
+                // console.log(response)
             return response;
         })
         
@@ -45,15 +46,19 @@ class Color extends React.Component {
     render() {
         
         let colorArray = [];
+
         let colors = this.props.colorData
-        
+        console.log("colors: " + colors[0]);
         
        
         for( let c in colors){
+            //console.log("inside loop: " + colors[0])
             colorArray.push(colors[c]);
         }
 
         
+        
+        console.log("colorsarray: " + colorArray[0]);
 
         let colorPallet = [];
         let mainPallet = [];
@@ -70,7 +75,7 @@ class Color extends React.Component {
 
             colorPallet = tempArray.map( col => {
                     //  return <div style={{backgroundColor: 'rgba(' + col.rgb.r + ',' + col.rgb.b + ',' + col.rgb.g + '1)', height: '100%', width: '45.19px'}}></div>
-                return <div style={{backgroundColor: col.hex, height: '100%', width: '45.19px'}}>{console.log(col.colors[0].hex.value)}</div>
+                return <div style={{backgroundColor: col, height: '100%', width: '45.19px'}}></div>
 
             })
 
