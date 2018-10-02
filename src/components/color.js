@@ -7,182 +7,185 @@ class Color extends React.Component {
         this.state = {
             newArr: []
         }
+        
     }
 
     componentWillReceiveProps(nextProps){
     }
 
     componentWillMount(){
-        for (var i = 0; i < 9; i++){
-        var letters = '0123456789ABCDEF';
-        let color = '';
+        let tempState = [];
 
-        for (var p = 0; p < 6; p++) {
-          color += letters[Math.floor(Math.random() * 16)];
-        }
-        // console.log(color);
-        fetch('http://www.thecolorapi.com/scheme?hex=' + color + '&mode=monochrome&count=5')
-        .then((response => response.json()))
-        .then(response => {
-            //console.log("colors: " + response.colors[0].hex.value)
+        var p = new Promise(function (resolve, reject) {
+            for (var i = 0; i < 13; i++){
+                var letters = '0123456789ABCDEF';
+                let color = '';
+                
+                for (var p = 0; p < 6; p++) {
+                  color += letters[Math.floor(Math.random() * 16)];
+                }
+                // console.log(color);
+                fetch('http://www.thecolorapi.com/scheme?hex=' + color + '&mode=monochrome&count=5')
+                .then((response => response.json()))
+
+                .then(response => {
+                    tempState.push(response.colors);
+                })
+            }
+
+            setTimeout(()=>{
+                resolve(tempState);
+            }, 800)
             
-            let tempState = this.state.newArr;
+        })
+        .then((tempState1) => {
 
-            tempState.push(response.colors);
-            this.setState({newArr: tempState},
+            // console.log("tempstate: " + tempState1);
+            this.setState({newArr: 'hello'})
+
+            this.setState({newArr: tempState1},
                 function(){
                     // console.log("array in state: " + this.state.newArr);
+                    this.props.onFetch(this.state.newArr);
                 });
-                // console.log(response)
-            return response;
-        })
-        
+                
+        });
     }
-
-    this.props.onFetch(this.state.newArr);
-
-}
       
     render() {
         
-        let colorArray = [];
-
-        let colors = this.props.colorData
-        console.log("colors: " + colors[0]);
         
-       
-        for( let c in colors){
-            //console.log("inside loop: " + colors[0])
-            colorArray.push(colors[c]);
-        }
-
-        
-        
-        console.log("colorsarray: " + colorArray[0]);
-
         let colorPallet = [];
         let mainPallet = [];
+        let mainColorName = [];
+        let colors = this.props.colorData
 
-        colorArray.forEach(colorObj => {
+        if(colors.length > 0){
+            
+        for( let i = 0; i < colors.length; i++){
+            let cArray = colors[i];
+            let colorArray = [];
+            let colorName = '';
 
-            // console.log("color map:" + typeof(colorObj))
-
-            let tempArray = [];
-
-            for( let x in colorObj){
-                tempArray.push(colorObj)
+            for ( let c in cArray){
+                console.log("inside loop: " + cArray[c].hex.value)
+                colorArray.push(cArray[c].hex.value);
+                colorName = cArray[c].name.value;
             }
 
-            colorPallet = tempArray.map( col => {
-                    //  return <div style={{backgroundColor: 'rgba(' + col.rgb.r + ',' + col.rgb.b + ',' + col.rgb.g + '1)', height: '100%', width: '45.19px'}}></div>
-                return <div style={{backgroundColor: col, height: '100%', width: '45.19px'}}></div>
+            mainColorName.push(colorName);
 
+            colorPallet = colorArray.map( col => {
+                return <div key={col} style={{backgroundColor: col, height: '100%', width: '45.19px'}}></div>
             })
 
-            //mainPallet.push(colorPallet);
-        })
-        
-       
-        console.log(colorPallet);
+            mainPallet.push(colorPallet);
 
-        
+        }
+        console.log(colorPallet[0]);
+        console.log(mainPallet[0]);
+    }
 
         return (
             <div>
                 <ButtonAppBar/>
                 <div className="homeContainer">
-                    <h1 className='titleText'>Palette</h1>
+                    <h1 className='titleText'>Palette Center</h1>
                     <div className="randomSchemeContainer">
                         <div className="randomScemeCard">
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="randomColorSceme">
-                                    {colorPallet}
+                                    {mainPallet[0]}
                                 </div>
-                                <p style={{fontSize: '15px', color: '#222'}}>Color Name</p>
+                                <p style={{fontSize: '15px', color: '#222'}}>{mainColorName[0]}</p>
                             </div>
                         </div>
                         <div className="randomScemeCard">
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="randomColorSceme">
-                                    <div style={{backgroundColor: '#fdffc2', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#edefc2', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#dddfc2', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#cdcfc2', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#bdbfc2', height: '100%', width: '45.19px'}}></div>
+                                    {mainPallet[1]}
                                 </div>
-                                <p>Color Name</p>
+                                <p>{mainColorName[1]}</p>
                             </div>
                         </div>
                         <div className="randomScemeCard">
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="randomColorSceme">
-                                    <div style={{backgroundColor: '#388de7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#387dd7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#386dc7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#385db7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#384da7', height: '100%', width: '45.19px'}}></div>
+                                    {mainPallet[2]}
                                 </div>
-                                <p>Color Name</p>
+                                <p>{mainColorName[2]}</p>
                             </div>
                         </div>
                         <div className="randomScemeCard">
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="randomColorSceme">
-                                    <div style={{backgroundColor: '#d6f7a7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#d6e7b7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#d6d7c7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#d6c7d7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#d6b7e7', height: '100%', width: '45.19px'}}></div>
+                                    {mainPallet[3]}
                                 </div>
-                                <p>Color Name</p>
+                                <p>{mainColorName[3]}</p>
                             </div>
                         </div>
                         <div className="randomScemeCard">
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="randomColorSceme">
-                                    <div style={{backgroundColor: '#123456', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#234567', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#345678', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#456789', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#56789f', height: '100%', width: '45.19px'}}></div>
+                                    {mainPallet[4]}
                                 </div>
-                                <p>Color Name</p>
+                                <p>{mainColorName[4]}</p>
                             </div>
                         </div>
                         <div className="randomScemeCard">
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="randomColorSceme">
-                                    <div style={{backgroundColor: '#697b65', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#696b65', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#695b65', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#694b65', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#693b65', height: '100%', width: '45.19px'}}></div>
+                                    {mainPallet[5]}
                                 </div>
-                                <p>Color Name</p>
+                                <p>{mainColorName[5]}</p>
                             </div>
                         </div>
                         <div className="randomScemeCard">
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="randomColorSceme">
-                                    <div style={{backgroundColor: '#fdffc2', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#edefc2', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#dddfc2', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#cdcfc2', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#bdbfc2', height: '100%', width: '45.19px'}}></div>
+                                    {mainPallet[6]}
                                 </div>
-                                <p>Color Name</p>
+                                <p>{mainColorName[6]}</p>
                             </div>
                         </div>
                         <div className="randomScemeCard">
                             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <div className="randomColorSceme">
-                                    <div style={{backgroundColor: '#388de7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#387dd7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#386dc7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#385db7', height: '100%', width: '45.19px'}}></div>
-                                    <div style={{backgroundColor: '#384da7', height: '100%', width: '45.19px'}}></div>
+                                    {mainPallet[7]}
                                 </div>
-                                <p>Color Name</p>
+                                <p>{mainColorName[7]}</p>
+                            </div>
+                        </div>
+                        <div className="randomScemeCard">
+                            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                                <div className="randomColorSceme">
+                                    {mainPallet[8]}
+                                </div>
+                                <p>{mainColorName[8]}</p>
+                            </div>
+                        </div>
+                        <div className="randomScemeCard">
+                            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                                <div className="randomColorSceme">
+                                    {mainPallet[9]}
+                                </div>
+                                <p>{mainColorName[9]}</p>
+                            </div>
+                        </div>
+                        <div className="randomScemeCard">
+                            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                                <div className="randomColorSceme">
+                                    {mainPallet[10]}
+                                </div>
+                                <p>{mainColorName[10]}</p>
+                            </div>
+                        </div>
+                        <div className="randomScemeCard">
+                            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+                                <div className="randomColorSceme">
+                                    {mainPallet[11]}
+                                </div>
+                                <p>{mainColorName[11]}</p>
                             </div>
                         </div>
                     </div>

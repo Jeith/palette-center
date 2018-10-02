@@ -28,7 +28,7 @@ function ButtonAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="title" color="inherit" className={classes.grow}>
-            Palettes
+            Palette Center
           </Typography>
           <Button color="inherit" to="/addFavorite">View Favorites</Button>
         </Toolbar>
