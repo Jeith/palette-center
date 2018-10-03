@@ -5,6 +5,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
@@ -27,10 +28,10 @@ function ButtonAppBar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="title" color="inherit" className={classes.grow}>
-            Palette Center
-          </Typography>
-          <Button color="inherit" to="/addFavorite">View Favorites</Button>
+          <Typography variant="title" color="inherit" className={classes.grow}><Link to="/" style={{textDecoration: 'none', color: 'white'}}>
+            The Palette Center
+          </Link></Typography>
+          <Button color="inherit" to="/addFavorite"><Link to="/favorites" style={{textDecoration: 'none', color: 'white', fontFamily: 'Roboto'}}>View Favorites</Link></Button>
         </Toolbar>
       </AppBar>
     </div>
