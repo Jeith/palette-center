@@ -92,14 +92,13 @@ class Color extends React.Component {
                 <div className="homeContainer">
                     <h1 className='titleText'>The Palette Center</h1>
                     <div className="buttons">
-                        <button><Link to="/" style={{textDecoration: 'none', color: 'white'}}>Monochrome</Link></button>
-                        <button><Link to="/analogic" style={{textDecoration: 'none', color: 'white'}}>Analogic</Link></button>
-                        <button><Link to="/triadic" style={{textDecoration: 'none', color: 'white'}}>Triadic</Link></button>
-                        <button><Link to="/tetratic" style={{textDecoration: 'none', color: 'white'}}>Tetradic</Link></button>
-                        <button><Link to="/complementary" style={{textDecoration: 'none', color: 'white'}}>Complementary</Link></button>
+                        <Link to="/" style={{textDecoration: 'none', color: 'white'}}><button>Monochrome</button></Link>
+                        <Link to="/analogic" style={{textDecoration: 'none', color: 'white'}}><button>Analogic</button></Link>
+                        <Link to="/triadic" style={{textDecoration: 'none', color: 'white'}}><button>Triadic</button></Link>
+                        <Link to="/tetratic" style={{textDecoration: 'none', color: 'white'}}><button>Tetradic</button></Link>
                     </div>
                     <div className="refresh">
-                        <button onClick={()=>{window.location.reload()}}>See New Color Set</button>
+                        <button onClick={()=>{window.location.reload()}}>Generate New Color Set</button>
                     </div>
                     <div className="randomSchemeContainer">
                         <div className="randomScemeCard">

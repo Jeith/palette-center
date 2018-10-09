@@ -31,7 +31,7 @@ function ButtonAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.grow}><Link to="/" style={{textDecoration: 'none', color: 'white'}}>
             The Palette Center
           </Link></Typography>
-          <Button color="inherit" to="/addFavorite"><Link to="/favorites" style={{textDecoration: 'none', color: 'white', fontFamily: 'Roboto'}}>View Favorites</Link></Button>
+          {/* <Button color="inherit" to="/addFavorite"><Link to="/favorites" style={{textDecoration: 'none', color: 'white', fontFamily: 'Roboto'}}>View Favorites</Link></Button> */}
         </Toolbar>
       </AppBar>
     </div>
