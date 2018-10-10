@@ -29,7 +29,7 @@ class Color extends React.Component {
                   color += letters[Math.floor(Math.random() * 16)];
                 }
                 
-                fetch('http://www.thecolorapi.com/scheme?hex=' + color + '&mode=monochrome&count=5')
+                fetch('https://www.thecolorapi.com/scheme?hex=' + color + '&mode=monochrome&count=5')
                 .then((response => response.json()))
 
                 .then(response => {

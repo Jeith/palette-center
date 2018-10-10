@@ -28,7 +28,7 @@ class Color extends React.Component {
                 for (var p = 0; p < 6; p++) {
                   color += letters[Math.floor(Math.random() * 16)];
                 }
-                fetch('http://www.thecolorapi.com/scheme?hex=' + color + '&mode=analogic&count=5')
+                fetch('https://www.thecolorapi.com/scheme?hex=' + color + '&mode=analogic&count=5')
                 .then((response => response.json()))
 
                 .then(response => {

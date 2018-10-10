@@ -30,7 +30,7 @@ class Color extends React.Component {
                 for (var p = 0; p < 6; p++) {
                   color += letters[Math.floor(Math.random() * 16)];
                 }
-                fetch('http://www.thecolorapi.com/scheme?hex=' + color + '&mode=triad&count=3')
+                fetch('https://www.thecolorapi.com/scheme?hex=' + color + '&mode=triad&count=3')
                 .then((response => response.json()))
 
                 .then(response => {
