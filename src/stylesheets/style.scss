@@ -1,0 +1,355 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+
+
+/* MIXINS
+ * =================================
+ */
+@mixin transform($val) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  -ms-transform: $val;
+  transform: $val;
+}
+
+@mixin transition($val...) {
+  -webkit-transition: $val;
+  -moz-transition: $val;
+  -o-transition: $val;
+  -ms-transition: $val;
+  transition: $val;
+}
+
+@mixin transform-origin($origin) {
+  moz-transform-origin: $origin;
+  -o-transform-origin: $origin;
+  -ms-transform-origin: $origin;
+  -webkit-transform-origin: $origin;
+  transform-origin: $origin;
+}
+
+@mixin display-flex {
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin display-inline-flex {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+@mixin justify-content($value) {
+  -webkit-justify-content: $value;
+  justify-content: $value;
+}
+
+@mixin flex-wrap($wrap) {
+  -webkit-flex-wrap: $wrap;
+  -moz-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+}
+
+@mixin align-content($align) {
+  -webkit-align-content: $align;
+  -moz-align-content: $align;
+  -ms-align-content: $align;
+  align-content: $align;
+}
+
+@mixin align-items($align) {
+  -webkit-align-items: $align;
+  -moz-align-items: $align;
+  -ms-align-items: $align;
+  align-items: $align;
+}
+
+@mixin align-self($align) {
+  -webkit-align-self: $align;
+  -moz-align-self: $align;
+  -ms-align-self: $align;
+  align-self: $align;
+}
+
+@mixin align-content($align) {
+  -webkit-align-content: $align;
+  -moz-align-content: $align;
+  -ms-align-content: $align;
+  align-content: $align;
+}
+
+@mixin user-select($val) {
+  -webkit-user-select: $val;
+  -moz-user-select: $val;
+  -ms-user-select: $val;
+  user-select: $val;
+}
+
+@mixin appearance($val) {
+  -webkit-appearance: $val;
+  -moz-appearance: $val;
+  -ms-appearance: $val;
+  -o-appearance: $val;
+  appearance: $val;
+}
+
+@mixin order($val) {
+  -webkit-box-ordinal-group: $val;
+  -moz-box-ordinal-group: $val;
+  -ms-flex-order: $val;
+  -webkit-order: $val;
+  order: $val;
+}
+
+@mixin flex-direction($direction) {
+  -webkit-flex-direction: $direction;
+  -moz-flex-direction: $direction;
+  -ms-flex-direction: $direction;
+  flex-direction: $direction;
+}
+
+@mixin flex($fg: 1, $fs: null, $fb: null) {
+  // Set a variable to be used by box-flex properties
+  $fg-boxflex: $fg;
+
+  // Box-Flex only supports a flex-grow value so let's grab the
+  // first item in the list and just return that.
+  @if type-of($fg) == "list" {
+    $fg-boxflex: nth($fg, 1);
+  }
+
+  -webkit-box-flex: $fg-boxflex;
+  -webkit-flex: $fg $fs $fb;
+  -moz-box-flex: $fg-boxflex;
+  -moz-flex: $fg $fs $fb;
+  -ms-flex: $fg $fs $fb;
+  flex: $fg $fs $fb;
+}
+
+@mixin clip-path($clip...) {
+  -webkit-clip-path: $clip;
+  -moz-clip-path: $clip;
+  -ms-clip-path: $clip;
+  clip-path: $clip;
+}
+
+@mixin animation(
+  $animation,
+  $duration,
+  $timing-function: false,
+  $delay: false,
+  $direction: false,
+  $iteration-count: false
+) {
+  -webkit-animation-delay: $delay;
+  -webkit-animation-duration: $duration;
+  -webkit-animation-name: $animation;
+  -webkit-animation-direction: $direction;
+  -webkit-animation-timing-function: $timing-function;
+  -webkit-animation-iteration-count: $iteration-count;
+
+  -moz-animation-delay: $delay;
+  -moz-animation-duration: $duration;
+  -moz-animation-name: $animation;
+  -moz-animation-direction: $direction;
+  -moz-animation-timing-function: $timing-function;
+  -moz-animation-iteration-count: $iteration-count;
+
+  animation-delay: $delay;
+  animation-duration: $duration;
+  animation-name: $animation;
+  animation-direction: $direction;
+  animation-timing-function: $timing-function;
+  animation-iteration-count: $iteration-count;
+}
+
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+@mixin border-box {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+@mixin filter($value) {
+  -webkit-filter: $value;
+  -moz-filter: $value;
+  -o-filter: $value;
+  filter: $value;
+}
+
+@mixin gradient-horz-bg($color1, $color2) {
+  background: $color1;
+  background: -moz-linear-gradient(left, $color1 0%, $color2 100%);
+  background: -webkit-linear-gradient(left, $color1 0%, $color2 100%);
+  background: linear-gradient(to right, $color1 0%, $color2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=1 );
+}
+
+@mixin gradient-vert-bg($color1, $color2) {
+  background: $color1;
+  background: -moz-linear-gradient(top, $color1 0%, $color2 100%);
+  background: -webkit-linear-gradient(top, $color1 0%, $color2 100%);
+  background: linear-gradient(to bottom, $color1 0%, $color2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=0 );
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito";
+}
+
+.titleText {
+	@include display-flex;
+	@include justify-content(center);
+  color: #3f51b5;
+  font-size: 50px;
+  text-align: center;
+}
+
+.homeContainer {
+  margin: 0 10% 0 10%;
+}
+
+.randomSchemeContainer {
+  @include display-flex;
+  @include flex-direction(row);
+  @include justify-content(space-around);
+  @include flex-wrap(wrap);
+  margin-top: 65px;
+}
+
+.randomScemeCard {
+  width: 236px;
+  height: 140px;
+}
+
+.randomColorSceme {
+	@include display-flex;
+  @include flex-direction(row);
+  @include flex-wrap(nowrap);
+  @include justify-content(center);
+  height: 88px;
+  width: 236px;
+  margin-left: "5px";
+  margin-right: "5px";
+}
+
+.toptobottom {
+  word-wrap: break-word;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  margin: 5px auto;
+  visibility: hidden;
+  width: 0;
+}
+
+.theColors {
+	@include transition(all .4s ease-in-out);
+
+	&:hover {
+		@include transition(all .4s ease-in-out);
+
+		.transDiv{
+			background-color: rgba(0, 0, 0, 0.05);
+			height: 88px;
+			width: 55px;
+	
+			.toptobottom {
+				visibility: visible;
+				width: 0;
+				word-wrap: break-word;
+				color: white;
+				font-size: 9.5px;
+				text-align: center;
+				margin: 0px auto;
+				padding-top: 6px;
+				text-decoration: none;
+			}
+		}
+		.transDivtri {
+			background-color: rgba(0, 0, 0, 0.3);
+			height: 88px;
+			width: 88px;
+
+			.toptobottom {
+				visibility: visible;
+				width: 0;
+				word-wrap: break-word;
+				color: white;
+				font-size: 9.5px;
+				text-align: center;
+				margin: 0px auto;
+				padding-top: 6px;
+				text-decoration: none;
+			}
+		}
+		.transDivtetra {
+			background-color: rgba(0, 0, 0, 0.3);
+			height: 88px;
+			width: 68px;
+
+			.toptobottom {
+				visibility: visible;
+				width: 0;
+				word-wrap: break-word;
+				color: white;
+				font-size: 9.5px;
+				text-align: center;
+				margin: 0px auto;
+				padding-top: 6px;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.buttons {
+  text-align: center;
+}
+
+.refresh {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: -40px;
+}
+
+button {
+  margin: 0px 10px;
+  background-color: #3f51b5;
+  color: white;
+  height: 25px;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+link {
+  text-decoration: none;
+  color: white;
+}
+
+.theColors:hover .transDivtri {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 88px;
+  width: 88px;
+}
+
+.theColors:hover .transDivtetra {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 88px;
+  width: 68px;
+}

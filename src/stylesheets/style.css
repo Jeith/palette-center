@@ -1,0 +1,153 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
+/* MIXINS
+ * =================================
+ */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Nunito"; }
+
+.titleText {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  color: #3f51b5;
+  font-size: 50px;
+  text-align: center; }
+
+.homeContainer {
+  margin: 0 10% 0 10%; }
+
+.randomSchemeContainer {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  -webkit-flex-wrap: wrap;
+  -moz-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-top: 65px; }
+
+.randomScemeCard {
+  width: 236px;
+  height: 140px; }
+
+.randomColorSceme {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-flex-wrap: nowrap;
+  -moz-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+  height: 88px;
+  width: 236px;
+  margin-left: "5px";
+  margin-right: "5px"; }
+
+.toptobottom {
+  word-wrap: break-word;
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  margin: 5px auto;
+  visibility: hidden;
+  width: 0; }
+
+.theColors {
+  -webkit-transition: all 0.4s ease-in-out;
+  -moz-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  -ms-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out; }
+  .theColors:hover {
+    -webkit-transition: all 0.4s ease-in-out;
+    -moz-transition: all 0.4s ease-in-out;
+    -o-transition: all 0.4s ease-in-out;
+    -ms-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out; }
+    .theColors:hover .transDiv {
+      background-color: rgba(0, 0, 0, 0.05);
+      height: 88px;
+      width: 55px; }
+      .theColors:hover .transDiv .toptobottom {
+        visibility: visible;
+        width: 0;
+        word-wrap: break-word;
+        color: white;
+        font-size: 9.5px;
+        text-align: center;
+        margin: 0px auto;
+        padding-top: 6px;
+        text-decoration: none; }
+    .theColors:hover .transDivtri {
+      background-color: rgba(0, 0, 0, 0.3);
+      height: 88px;
+      width: 88px; }
+      .theColors:hover .transDivtri .toptobottom {
+        visibility: visible;
+        width: 0;
+        word-wrap: break-word;
+        color: white;
+        font-size: 9.5px;
+        text-align: center;
+        margin: 0px auto;
+        padding-top: 6px;
+        text-decoration: none; }
+    .theColors:hover .transDivtetra {
+      background-color: rgba(0, 0, 0, 0.3);
+      height: 88px;
+      width: 68px; }
+      .theColors:hover .transDivtetra .toptobottom {
+        visibility: visible;
+        width: 0;
+        word-wrap: break-word;
+        color: white;
+        font-size: 9.5px;
+        text-align: center;
+        margin: 0px auto;
+        padding-top: 6px;
+        text-decoration: none; }
+
+.buttons {
+  text-align: center; }
+
+.refresh {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: -40px; }
+
+button {
+  margin: 0px 10px;
+  background-color: #3f51b5;
+  color: white;
+  height: 25px;
+  text-decoration: none;
+  margin-bottom: 10px; }
+
+link {
+  text-decoration: none;
+  color: white; }
+
+.theColors:hover .transDivtri {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 88px;
+  width: 88px; }
+
+.theColors:hover .transDivtetra {
+  background-color: rgba(0, 0, 0, 0.3);
+  height: 88px;
+  width: 68px; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import './App.css';
+import './stylesheets/style.css';
 import apiData from './actions/apiData'
 import Color from './components/color'
 
