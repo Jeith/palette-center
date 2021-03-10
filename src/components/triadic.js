@@ -3,7 +3,6 @@ import ButtonAppBar from './SearchAppBar.js';
 import {Link} from 'react-router-dom';
 import Footer from './footer';
 
-
 import {connect} from 'react-redux';
 import apiData from '../actions/apiData'
 
@@ -14,9 +13,6 @@ class Color extends React.Component {
             newArr: []
         }
         
-    }
-
-    componentWillReceiveProps(nextProps){
     }
 
     componentWillMount(){
@@ -44,20 +40,16 @@ class Color extends React.Component {
             
         })
         .then((tempState1) => {
-
             this.setState({newArr: 'hello'})
 
             this.setState({newArr: tempState1},
-                function(){
-                    this.props.onFetch(this.state.newArr);
-                });
-                
+            function(){
+                this.props.onFetch(this.state.newArr);
+            });
         });
     }
       
     render() {
-        
-        
         let colorPallet = [];
         let mainPallet = [];
         let mainColorName = [];
