@@ -4,11 +4,11 @@ function footer() {
         <footer>
             <div style={{display: 'flex', justifyContent: 'center', marginTop: '20px'}}>
             <a href="https://github.com/Jeith">
-                <img src="../GitHub.png" alt="Github Logo" />
+                <img src="../GitHub.png" alt="Github" />
             </a>
             </div>
             <div style={{display: 'flex', justifyContent: 'center'}}>
-                <p style={{fontFamily: 'helvetica'}}>Developed and Designed by: <a href="http://keith-pittman.com/" style={{textDecoration: 'none', fontFamily: 'helvetica'}}>Keith Pittman</a></p>
+                <p style={{fontFamily: 'helvetica'}}>developed and designed by: <a href="https://portfolio.jeith.com" style={{textDecoration: 'none', fontFamily: 'helvetica'}}>jeith</a></p>
             </div>
         </footer>
     );
